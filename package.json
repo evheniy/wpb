@@ -4,7 +4,8 @@
   "repository": "evheniy/wpb",
   "version": "0.0.0",
   "scripts": {
-    "lint": "eslint index.js tests",
+    "lint": "npm-run-all lint:**",
+    "lint:clear": "rimraf coverage",
     "lint:js:eslint": "eslint .",
     "lint:js:jscs": "jscs .",
     "test": "npm-run-all --parallel test:**",
@@ -12,7 +13,6 @@
     "test:code": "mocha tests --recursive",
     "test:coverage": "istanbul cover _mocha -- tests --recursive",
     "report": "cat ./coverage/lcov.info | coveralls",
-    "clear": "rimraf coverage",
     "precommit": "npm run lint && npm test",
     "prepush": "npm run lint && npm test"
   },
@@ -27,6 +27,7 @@
   ],
   "dependencies": {
     "debug": "^2.6.8",
+    "html-webpack-plugin": "^2.29.0",
     "webpack": "^3.2.0"
   },
   "devDependencies": {

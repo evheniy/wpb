@@ -1,4 +1,4 @@
-const debug = require('debug')('wbp:index');
+const debug = require('debug')('wpb:index');
 const config = require('./src/config');
 
 debug(config);

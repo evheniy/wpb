@@ -31,3 +31,22 @@ Or global:
 * using webpack
 * like bandler
 * .wpbrc
+
+.browserslistrc
+
+    > 1%
+    Last 2 versions
+    IE >= 8
+    
+.babelrc
+
+    {
+      "presets": [
+        "env",
+        "react"
+      ]
+    }
+
+## Debug
+
+    DEBUG=wpb:* npm run test:code
