@@ -1,0 +1,49 @@
+{
+  "name": "wpb",
+  "description": "Webpack Builder",
+  "repository": "evheniy/wpb",
+  "version": "0.0.0",
+  "scripts": {
+    "lint": "eslint index.js tests",
+    "lint:js:eslint": "eslint .",
+    "lint:js:jscs": "jscs .",
+    "test": "npm-run-all --parallel test:**",
+    "test:security": "nsp check",
+    "test:code": "mocha tests --recursive",
+    "test:coverage": "istanbul cover _mocha -- tests --recursive",
+    "report": "cat ./coverage/lcov.info | coveralls",
+    "clear": "rimraf coverage",
+    "precommit": "npm run lint && npm test",
+    "prepush": "npm run lint && npm test"
+  },
+  "keywords": [
+    "webpack",
+    "config"
+  ],
+  "files": [
+    "index.js",
+    "src",
+    "bin"
+  ],
+  "dependencies": {
+    "debug": "^2.6.8",
+    "webpack": "^3.2.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "coveralls": "^2.13.1",
+    "eslint": "^4.2.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.7.0",
+    "husky": "^0.14.3",
+    "istanbul": "^1.1.0-alpha.1",
+    "jscs": "^3.0.7",
+    "locate-path": "^2.0.0",
+    "mocha": "^3.4.2",
+    "mocha-lcov-reporter": "^1.3.0",
+    "npm-run-all": "^4.0.2",
+    "nsp": "^2.6.3",
+    "rimraf": "^2.6.1"
+  },
+  "license": "MIT"
+}
