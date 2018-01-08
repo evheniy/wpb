@@ -1,8 +1,11 @@
 {
   "name": "wpb",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "WpB - WebpackBulder - less chaos in React World!",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "test": "npm-run-all test:*",
