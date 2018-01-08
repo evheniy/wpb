@@ -1,6 +1,18 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+// the path(s) that should be cleaned
+const pathsToClean = ['lib'];
+
+// the clean options to use
+const cleanOptions = {
+  root: resolve(__dirname),
+  exclude: ['lib/.gitignore'],
+  verbose: true,
+  dry: false,
+};
 
 const settings = {
   context: resolve(__dirname, '.'),
@@ -23,6 +35,7 @@ const settings = {
     }],
   },
   plugins: [
+    new CleanWebpackPlugin(pathsToClean, cleanOptions),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       compress: {

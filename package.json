@@ -1,6 +1,6 @@
 {
   "name": "wpb",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "WpB - WebpackBulder - less chaos in React World!",
   "main": "lib/index.js",
   "files": [
@@ -31,6 +31,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.17",
     "eslint": "^4.15.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
@@ -41,6 +42,20 @@
     "webpack-node-externals": "^1.6.0"
   },
   "peerDependencies": {
+    "@redux-offline/redux-offline": "^2.2.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "history": "^4.7.2",
+    "ignore-styles": "^5.0.1",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-observable": "^0.17.0",
+    "rxjs": "^5.5.6"
+  },
+  "dependencies": {
     "@redux-offline/redux-offline": "^2.2.1",
     "babel-polyfill": "^6.26.0",
     "babel-register": "^6.26.0",
