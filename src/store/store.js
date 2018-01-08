@@ -8,7 +8,6 @@ import { epicMiddleware } from './epics';
 import createReducer from './reducers';
 import history from '../history';
 
-
 const middlewares = [epicMiddleware, routerMiddleware(history)];
 
 if (process.env.NODE_ENV === 'development') {
@@ -27,12 +26,12 @@ const storeParams = [
 
 const store = createStore(...storeParams);
 
-store.asyncReducers = {};
+const asyncReducers = {};
 
-export const injectReducer = (name, asyncReducer) => {
-  store.asyncReducers[name] = asyncReducer;
+const injectReducer = (name, asyncReducer) => {
+  asyncReducers[name] = asyncReducer;
 
-  store.replaceReducer(createReducer(store.asyncReducers));
+  store.replaceReducer(createReducer(asyncReducers));
 };
 
-export default store;
+export { store, injectReducer };

@@ -1,5 +1,4 @@
-import store, { injectReducer } from './store';
-import injectEpic from './epics';
+import { injectReducer, store } from './store';
+import { injectEpic } from './epics';
 
-export default store;
-export { injectReducer, injectEpic };
+export { injectReducer, injectEpic, store };
