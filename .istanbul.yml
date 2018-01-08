@@ -1,3 +1,0 @@
-instrumentation:
-  default-excludes: true
-  include-all-sources: true
