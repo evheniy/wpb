@@ -29,6 +29,9 @@ const store = createStore(...storeParams);
 const asyncReducers = {};
 
 const injectReducer = (name, asyncReducer) => {
+  if (asyncReducers[name]) {
+    throw new Error(`Reducer with key: ${name} already exists!`);
+  }
   asyncReducers[name] = asyncReducer;
 
   store.replaceReducer(createReducer(asyncReducers));
