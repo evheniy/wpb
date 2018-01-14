@@ -1,12 +1,11 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import React, { Fragment } from 'react';
 import { ConnectedRouter } from 'react-router-redux';
 import history from '../history';
 
 export default ({ children }) => (
   <ConnectedRouter history={history}>
-    <BrowserRouter>
+    <Fragment>
       {children}
-    </BrowserRouter>
+    </Fragment>
   </ConnectedRouter>
 );

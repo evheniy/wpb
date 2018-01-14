@@ -1,6 +1,6 @@
 {
   "name": "wpb",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "WpB - WebpackBulder - less chaos in React World!",
   "main": "lib/index.js",
   "files": [
