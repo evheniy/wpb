@@ -30,7 +30,10 @@ const asyncReducers = {};
 
 const injectReducer = (name, asyncReducer) => {
   if (asyncReducers[name]) {
-    throw new Error(`Reducer with key: ${name} already exists!`);
+    /* eslint-disable no-console */
+    console.warn(`Reducer with key: ${name} already exists! Reducer will be replaced...`);
+    console.log('It could be HMR result. If so don\'t worry');
+    /* eslint-enable */
   }
   asyncReducers[name] = asyncReducer;
 

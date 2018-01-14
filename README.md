@@ -21,6 +21,10 @@ Less chaos in React World
       </Fragment>
     ));
     
+    if (module.hot) {
+      module.hot.accept();
+    }
+    
 ### Module Example
 
     .

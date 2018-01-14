@@ -19,13 +19,4 @@ const renderApp = (Component) => {
   );
 };
 
-const enableHotLoader = () => {
-  if (module.hot) {
-    module.hot.accept();
-  }
-};
-
-export default (props) => Promise.all([
-  renderApp(props),
-  enableHotLoader(),
-]);
+export default renderApp;
