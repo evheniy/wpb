@@ -3,12 +3,13 @@ import logger from 'redux-logger';
 import { offline } from '@redux-offline/redux-offline';
 import offlineConfig from '@redux-offline/redux-offline/lib/defaults';
 import { routerMiddleware } from 'react-router-redux';
+import thunk from 'redux-thunk';
 
 import { epicMiddleware } from './epics';
 import createReducer from './reducers';
 import history from '../history';
 
-const middlewares = [epicMiddleware, routerMiddleware(history)];
+const middlewares = [epicMiddleware, routerMiddleware(history), thunk];
 
 if (process.env.NODE_ENV === 'development') {
   middlewares.push(logger);

@@ -1,6 +1,6 @@
 {
   "name": "wpb",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "WpB - WebpackBulder - less chaos in React World!",
   "main": "lib/index.js",
   "files": [
@@ -60,6 +60,7 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-observable": "^0.17.0",
+    "redux-thunk": "^2.2.0",
     "rxjs": "^5.5.6",
     "webpack": "^3.10.0",
     "webpack-node-externals": "^1.6.0"
@@ -83,6 +84,7 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-observable": "^0.17.0",
+    "redux-thunk": "^2.2.0",
     "rxjs": "^5.5.6"
   }
 }
