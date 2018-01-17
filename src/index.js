@@ -4,6 +4,7 @@ import app from './app';
 import router from './router';
 import Loader from './loader';
 import Loadable from './loadable';
+import DynamicComponent from './dynamic';
 
 export {
   history,
@@ -14,4 +15,5 @@ export {
   router,
   Loader,
   Loadable,
+  DynamicComponent,
 };
