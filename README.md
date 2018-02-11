@@ -202,7 +202,7 @@ Less chaos in React World
     import redux from './reducers';
     import epics from './epics';
     
-    injectEpic(epics);
+    injectEpic('actions', epics);
     injectReducer('actions', redux);
     
     export default props => (
