@@ -1,12 +1,32 @@
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-const epic$ = new BehaviorSubject(combineEpics());
+const asyncEpics = {};
 
-const rootEpic = (action$, store) => epic$.mergeMap(epic => epic(action$, store));
+const getRootEpic = () => {
+  const epic$ = new BehaviorSubject(combineEpics(...Object.values(asyncEpics)));
+
+  return (action$, store) => epic$.mergeMap(epic => epic(action$, store));
+};
+
+const rootEpic = getRootEpic();
 
 const epicMiddleware = createEpicMiddleware(rootEpic);
 
-const injectEpic = asyncEpic$ => epic$.next(asyncEpic$);
+const injectEpic = (name, asyncEpic$) => {
+  /* eslint-disable no-console */
+  if (process.env.NODE_ENV !== 'production') {
+    if (asyncEpics[name]) {
+      console.log(`Replacing epic for ${name}`);
+    } else {
+      console.log(`Injecting epic for ${name}`);
+    }
+  }
+  /* eslint-enable */
+
+  asyncEpics[name] = asyncEpic$;
+
+  epicMiddleware.replaceEpic(getRootEpic());
+};
 
 export { injectEpic, epicMiddleware };

@@ -22,7 +22,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const storeParams = [
   createReducer(),
   window.STATE_FROM_SERVER || {},
-  composeEnhancers(applyMiddleware(...middlewares), offline(offlineConfig)),
+  composeEnhancers(applyMiddleware(...middlewares)),
+  offline(offlineConfig),
 ];
 
 const store = createStore(...storeParams);
@@ -30,12 +31,16 @@ const store = createStore(...storeParams);
 const asyncReducers = {};
 
 const injectReducer = (name, asyncReducer) => {
-  if (asyncReducers[name]) {
-    /* eslint-disable no-console */
-    console.warn(`Reducer with key: ${name} already exists! Reducer will be replaced...`);
-    console.log('It could be HMR result. If so don\'t worry');
-    /* eslint-enable */
+  /* eslint-disable no-console */
+  if (process.env.NODE_ENV !== 'production') {
+    if (asyncReducers[name]) {
+      console.log(`Replacing reducer for ${name}`);
+    } else {
+      console.log(`Injecting reducer for ${name}`);
+    }
   }
+  /* eslint-enable */
+
   asyncReducers[name] = asyncReducer;
 
   store.replaceReducer(createReducer(asyncReducers));

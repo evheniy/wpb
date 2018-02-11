@@ -1,6 +1,6 @@
 {
   "name": "wpb",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "WpB - WebpackBulder - less chaos in React World!",
   "main": "lib/index.js",
   "files": [
@@ -9,7 +9,7 @@
   "scripts": {
     "build": "NODE_ENV=production gulp",
     "test": "npm-run-all test:*",
-    "test:lint": "eslint .",
+    "test:lint": "eslint . --ext .js,.jsx",
     "precommit": "npm t",
     "prepush": "npm t"
   },
@@ -84,6 +84,7 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
+    "prop-types": "^15.6.0",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-observable": "^0.17.0",
