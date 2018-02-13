@@ -23,7 +23,6 @@ const storeParams = [
   createReducer(),
   window.STATE_FROM_SERVER || {},
   composeEnhancers(applyMiddleware(...middlewares), offline(offlineConfig)),
-
 ];
 
 const store = createStore(...storeParams);
