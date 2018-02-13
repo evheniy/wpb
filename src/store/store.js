@@ -22,8 +22,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const storeParams = [
   createReducer(),
   window.STATE_FROM_SERVER || {},
-  composeEnhancers(applyMiddleware(...middlewares)),
-  offline(offlineConfig),
+  composeEnhancers(applyMiddleware(...middlewares), offline(offlineConfig)),
+
 ];
 
 const store = createStore(...storeParams);
