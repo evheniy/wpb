@@ -1,31 +1,39 @@
 import 'rxjs';
-import React, { Fragment } from 'react';
-import { render } from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { hot } from 'react-hot-loader';
+import { ErrorBoundary, FallbackView } from 'react-error-boundaries';
 import { StaticRouter, BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from '../store';
 import Router from '../router';
 
-const renderApp = (Component, { location = null, context = null, id = 'root' } = {}) => {
-  const HMR = process.env.NODE_ENV !== 'production' ? AppContainer : Fragment;
+const renderApp = (Component, { ssr = {}, render = {}, error = {} } = {}) => {
   const ReactRouter = process.env.SSR ? StaticRouter : BrowserRouter;
+  const { location, context } = ssr;
+  const { id } = render;
+  const { onError, FallbackComponent } = error;
+  const ErrorComponent = process.env.NODE_ENV === 'production' ? FallbackComponent : FallbackView;
 
   const AppComponent = (
-    <Provider store={store}>
-      <HMR>
+    <ErrorBoundary onError={onError} FallbackComponent={ErrorComponent}>
+      <Provider store={store}>
         <ReactRouter location={location} context={context}>
           <Router>
             <Component />
           </Router>
         </ReactRouter>
-      </HMR>
-    </Provider>
+      </Provider>
+    </ErrorBoundary>
   );
 
-  return process.env.SSR ? AppComponent : setTimeout(() => {
-    render(AppComponent, document.getElementById(id));
-  }, 0);
+  if (id) {
+    setTimeout(() => {
+      ReactDOM.render(AppComponent, document.getElementById(id));
+    }, 0);
+  }
+
+  return hot(module)(AppComponent);
 };
 
 export default renderApp;
