@@ -1,5 +1,5 @@
 import 'rxjs';
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { hot } from 'react-hot-loader';
 import { ErrorBoundary, FallbackView } from 'react-error-boundaries';
@@ -8,8 +8,11 @@ import { Provider } from 'react-redux';
 import { store } from '../store';
 import Router from '../router';
 
+const isSSR = ssr => Object.keys(ssr).length === 0;
+
 const renderApp = (Component, { ssr = {}, render = {}, error = {} } = {}) => {
-  const ReactRouter = process.env.SSR ? StaticRouter : BrowserRouter;
+  const ReactRouter = isSSR(ssr) ? StaticRouter : BrowserRouter;
+  const RouterWrapper = isSSR(ssr) ? Fragment : Router;
   const { location, context } = ssr;
   const { id } = render;
   const { onError, FallbackComponent } = error;
@@ -19,9 +22,9 @@ const renderApp = (Component, { ssr = {}, render = {}, error = {} } = {}) => {
     <ErrorBoundary onError={onError} FallbackComponent={ErrorComponent}>
       <Provider store={store}>
         <ReactRouter location={location} context={context}>
-          <Router>
+          <RouterWrapper>
             <Component />
-          </Router>
+          </RouterWrapper>
         </ReactRouter>
       </Provider>
     </ErrorBoundary>
