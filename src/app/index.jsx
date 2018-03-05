@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { store } from '../store';
 import Router from '../router';
 
-const isSSR = ssr => Object.keys(ssr).length === 0;
+const isSSR = ssr => Object.keys(ssr).length !== 0;
 
 const renderApp = (Component, { ssr = {}, render = {}, error = {} } = {}) => {
   const ReactRouter = isSSR(ssr) ? StaticRouter : BrowserRouter;
