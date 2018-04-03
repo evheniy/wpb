@@ -1,6 +1,6 @@
 {
   "name": "wpb",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "WpB - WebpackBulder - less chaos in React World!",
   "main": "lib/index.js",
   "files": [
@@ -33,9 +33,9 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "eslint": "^4.18.2",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-import": "^2.10.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "gulp": "^3.9.1",
@@ -45,10 +45,10 @@
     "history": "^4.7.2",
     "husky": "^0.14.3",
     "npm-run-all": "^4.1.2",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
     "react-error-boundaries": "^1.1.4",
-    "react-hot-loader": "^4.0.0",
+    "react-hot-loader": "^4.0.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
@@ -57,15 +57,15 @@
     "redux-observable": "^0.18.0",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
-    "rxjs": "^5.5.6"
+    "rxjs": "^5.5.8"
   },
   "peerDependencies": {
     "@redux-offline/redux-offline": "^2.3.2",
     "history": "^4.7.2",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
     "react-error-boundaries": "^1.1.4",
-    "react-hot-loader": "^4.0.0",
+    "react-hot-loader": "^4.0.1",
     "react-redux": "^5.0.7",
     "redux-promise": "^0.5.3",
     "react-router-dom": "^4.2.2",
@@ -75,6 +75,6 @@
     "redux-logger": "^3.0.6",
     "redux-observable": "^0.18.0",
     "redux-thunk": "^2.2.0",
-    "rxjs": "^5.5.6"
+    "rxjs": "^5.5.8"
   }
 }

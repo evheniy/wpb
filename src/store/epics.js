@@ -15,7 +15,7 @@ const epicMiddleware = createEpicMiddleware(rootEpic);
 
 const injectEpic = (name, asyncEpic$) => {
   /* eslint-disable no-console */
-  if (process.env.NODE_ENV !== 'production') {
+  if (!['production', 'test'].includes(process.env.NODE_ENV)) {
     if (asyncEpics[name]) {
       console.log(`Replacing epic for ${name}`);
     } else {

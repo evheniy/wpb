@@ -1,5 +1,5 @@
 import 'rxjs';
-import React, { Fragment } from 'react';
+import React, { Fragment, StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { hot } from 'react-hot-loader';
 import { ErrorBoundary, FallbackView } from 'react-error-boundaries';
@@ -19,15 +19,17 @@ const renderApp = (Component, { ssr = {}, render = {}, error = {} } = {}) => {
   const ErrorComponent = process.env.NODE_ENV === 'production' ? FallbackComponent : FallbackView;
 
   const AppComponent = (
-    <ErrorBoundary onError={onError} FallbackComponent={ErrorComponent}>
-      <Provider store={store}>
-        <ReactRouter location={location} context={context}>
-          <RouterWrapper>
-            <Component />
-          </RouterWrapper>
-        </ReactRouter>
-      </Provider>
-    </ErrorBoundary>
+    <StrictMode>
+      <ErrorBoundary onError={onError} FallbackComponent={ErrorComponent}>
+        <Provider store={store}>
+          <ReactRouter location={location} context={context}>
+            <RouterWrapper>
+              <Component />
+            </RouterWrapper>
+          </ReactRouter>
+        </Provider>
+      </ErrorBoundary>
+    </StrictMode>
   );
 
   if (id) {
