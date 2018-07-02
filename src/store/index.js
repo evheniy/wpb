@@ -6,6 +6,11 @@ const inject = (name, asyncReducer, asyncEpic$) => {
   injectEpic(name, asyncEpic$);
 };
 
-export { store, injectReducer, injectEpic, inject };
+export {
+  store,
+  injectReducer,
+  injectEpic,
+  inject,
+};
 
 export default store;
