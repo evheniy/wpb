@@ -30,7 +30,7 @@ const asyncReducers = {};
 
 const injectReducer = (name, asyncReducer) => {
   /* eslint-disable no-console */
-  if (process.env.NODE_ENV !== 'production') {
+  if (!['production', 'test'].includes(process.env.NODE_ENV)) {
     if (asyncReducers[name]) {
       console.log(`Replacing reducer for ${name}`);
     } else {
