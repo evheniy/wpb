@@ -29,7 +29,6 @@ const store = createStore(...storeParams);
 const asyncReducers = {};
 
 const injectReducer = (name, asyncReducer) => {
-  /* eslint-disable no-console */
   if (!['production', 'test'].includes(process.env.NODE_ENV)) {
     if (asyncReducers[name]) {
       console.log(`Replacing reducer for ${name}`);
@@ -37,7 +36,6 @@ const injectReducer = (name, asyncReducer) => {
       console.log(`Injecting reducer for ${name}`);
     }
   }
-  /* eslint-enable */
 
   asyncReducers[name] = asyncReducer;
 

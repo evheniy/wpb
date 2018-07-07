@@ -4,6 +4,7 @@ import {
   injectReducer,
   injectEpic,
   inject,
+  EPIC_REPLACING,
 } from './store';
 import app from './app';
 import router from './router';
@@ -16,4 +17,5 @@ export {
   inject,
   app,
   router,
+  EPIC_REPLACING,
 };

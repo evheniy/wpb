@@ -1,5 +1,5 @@
 import { injectReducer, store } from './store';
-import { injectEpic } from './epics';
+import { injectEpic, EPIC_REPLACING } from './epics';
 
 const inject = (name, asyncReducer, asyncEpic$) => {
   injectReducer(name, asyncReducer);
@@ -11,6 +11,7 @@ export {
   injectReducer,
   injectEpic,
   inject,
+  EPIC_REPLACING,
 };
 
 export default store;

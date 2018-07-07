@@ -1,20 +1,31 @@
-import { createEpicMiddleware, combineEpics } from 'redux-observable';
+import { createEpicMiddleware, combineEpics, ofType } from 'redux-observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { switchMap, takeUntil } from 'rxjs/operators';
+
+import { store } from './store';
 
 const asyncEpics = {};
+
+export const EPIC_REPLACING = '@@wpb/EPIC_REPLACING';
 
 const getRootEpic = () => {
   const epic$ = new BehaviorSubject(combineEpics(...Object.values(asyncEpics)));
 
-  return (action$, store) => epic$.mergeMap(epic => epic(action$, store));
+  return (action$, ...rest) => epic$.pipe(
+    switchMap(epic => epic(action$, ...rest)),
+    takeUntil(action$.pipe(
+      ofType(EPIC_REPLACING),
+    )),
+  );
 };
 
 const rootEpic = getRootEpic();
 
-const epicMiddleware = createEpicMiddleware(rootEpic);
+const epicMiddleware = createEpicMiddleware();
+
+epicMiddleware.run(rootEpic);
 
 const injectEpic = (name, asyncEpic$) => {
-  /* eslint-disable no-console */
   if (!['production', 'test'].includes(process.env.NODE_ENV)) {
     if (asyncEpics[name]) {
       console.log(`Replacing epic for ${name}`);
@@ -22,11 +33,11 @@ const injectEpic = (name, asyncEpic$) => {
       console.log(`Injecting epic for ${name}`);
     }
   }
-  /* eslint-enable */
 
   asyncEpics[name] = asyncEpic$;
 
-  epicMiddleware.replaceEpic(getRootEpic());
+  store.dispatch({ type: EPIC_REPLACING });
+  epicMiddleware.run(getRootEpic());
 };
 
 export { injectEpic, epicMiddleware };
