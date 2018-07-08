@@ -23,7 +23,9 @@ const rootEpic = getRootEpic();
 
 const epicMiddleware = createEpicMiddleware();
 
-epicMiddleware.run(rootEpic);
+if (process.env.NODE_ENV !== 'test') {
+  epicMiddleware.run(rootEpic);
+}
 
 const injectEpic = (name, asyncEpic$) => {
   if (!['production', 'test'].includes(process.env.NODE_ENV)) {
@@ -36,8 +38,10 @@ const injectEpic = (name, asyncEpic$) => {
 
   asyncEpics[name] = asyncEpic$;
 
-  store.dispatch({ type: EPIC_REPLACING });
-  epicMiddleware.run(getRootEpic());
+  if (process.env.NODE_ENV !== 'test') {
+    store.dispatch({ type: EPIC_REPLACING });
+    epicMiddleware.run(getRootEpic());
+  }
 };
 
 export { injectEpic, epicMiddleware };
