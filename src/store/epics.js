@@ -1,5 +1,5 @@
 import { createEpicMiddleware, combineEpics, ofType } from 'redux-observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
 
 import { store } from './store';
